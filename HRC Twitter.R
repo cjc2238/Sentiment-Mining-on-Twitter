@@ -100,10 +100,7 @@ hrc4 <- hrc %>% group_by(created) %>% summarise(mean(negative))
 names(hrc4) <- c("Date","Negative")
 
 ## Plot a line plot using ggplot
-ggplot(hrc2, aes(Date, Score)) + geom_line() + xlab("Date") + ylab("Mean Sentiment Score")
-
 hrc_plot <- ggplot() + 
-  geom_line(aes(Date, Score, colour="Average"), size = 2, hrc2) +
-  geom_line(aes(Date, Positive, colour="Positive"), size = 2, hrc3) +
-  geom_line(aes(Date, Negative, colour="Negative"), size = 2, hrc4) + labs(title = "Sentiment of Hilary Related Clinton Tweets")
+  geom_line(aes(Date, Positive), colour="black", size = 2, hrc3) +
+  geom_line(aes(Date, Negative), colour="red", size = 2, hrc4) + labs(title = "Sentiment of Hilary Related Clinton Tweets")
 
