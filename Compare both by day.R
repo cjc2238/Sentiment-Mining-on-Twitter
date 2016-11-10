@@ -26,7 +26,7 @@ setwd("~/GitHub/Sentiment Mining on Twitter")
 #########################
 # Pull and load the data
 #########################
-hrc <- searchTwitteR('Hillary Clinton + President', resultType = "mixed", n=5000)
+hrc <- searchTwitteR('Hillary Clinton + President', resultType = "recent", n=5000)
 hrc <- twListToDF(hrc)
 hrc <- hrc[, order(names(hrc))]
 hrc$created <- strftime(hrc$created, '%Y-%m-%d')
@@ -84,7 +84,7 @@ hrc$score <- hrc$positive - hrc$negative
 # Pull and load the data
 #########################
 
-djt <- searchTwitteR('Donald Trump + President', resultType = "mixed", n=5000)
+djt <- searchTwitteR('Donald Trump + President', resultType = "recent", n=5000)
 djt <- twListToDF(djt)
 djt <- djt[, order(names(djt))]
 djt$created <- strftime(djt$created, '%Y-%m-%d')
@@ -148,5 +148,5 @@ p_djt <- ggplot(djt, aes(score)) + geom_density(color="red", size = 1, fill = "#
 p_both <- p_djt + geom_density(data = hrc, aes(score), color="blue", size = 1, fill = "#56B4E9", alpha = .5)
 
 p_both + geom_vline(data = mu, aes(xintercept=mean),
-                   color=c("blue","red"), linetype="dashed", size=.8) + labs(title="Sentiment of Twitter Users Regarding Presidential Candidates",x="Sentiment Score", y = "Density") 
+                   color=c("blue","red"), linetype="dashed", size=.8) + labs(title="Sentiment of Twitter Users Regarding Presidential Candidates",x="Sentiment Score", y = "Density")
 
